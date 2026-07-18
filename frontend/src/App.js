@@ -1,95 +1,76 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate, Link, useLocation } from "react-router-dom";
 import "./App.css";
 import { getToken, setUnauthHandler, clearToken } from "./lib/api";
-import SmoothScroll from "./components/nexus/SmoothScroll";
-import Cursor from "./components/nexus/Cursor";
 import AccessGate from "./components/nexus/AccessGate";
-import TopBar from "./components/nexus/TopBar";
-import Hero from "./components/nexus/Hero";
-import Council from "./components/nexus/Council";
-import Forge from "./components/nexus/Forge";
-import Vault from "./components/nexus/Vault";
-import Treasury from "./components/nexus/Treasury";
-import Epilogue from "./components/nexus/Epilogue";
+import HomePage from "./components/nexus/HomePage";
+import LabPage from "./components/nexus/LabPage";
+import BacktestPage from "./components/nexus/BacktestPage";
+import PortfolioPage from "./components/nexus/PortfolioPage";
+
+function Chrome({ children, onLogout }) {
+  const loc = useLocation();
+  const items = [
+    ["/", "Introduction"],
+    ["/lab", "I. The Council"],
+    ["/backtest", "II. The Forge"],
+    ["/portfolio", "III. The Treasury"],
+  ];
+  return (
+    <div>
+      <header className="border-b border-[#111] bg-white sticky top-0 z-40">
+        <div className="container-wide !pt-4 !pb-4 !pl-6 !pr-6 flex items-center justify-between flex-wrap gap-4">
+          <Link to="/" className="no-underline hover:no-underline" data-testid="brand">
+            <span className="font-display text-lg tracking-wide">GD Nexus</span>
+            <span className="muted italic ml-3 small">— A Terminal for Quantitative Research</span>
+          </Link>
+          <nav className="flex items-center gap-6 small flex-wrap" data-testid="top-nav">
+            {items.map(([p, l]) => (
+              <Link
+                key={p}
+                to={p}
+                data-testid={`nav-${p === "/" ? "home" : p.replace("/","")}`}
+                className={loc.pathname === p ? "no-underline italic" : ""}
+              >
+                {l}
+              </Link>
+            ))}
+            <button className="btn-link small" onClick={onLogout} data-testid="logout-btn">Logout</button>
+          </nav>
+        </div>
+      </header>
+      {children}
+      <footer className="border-t border-[#111] mt-24">
+        <div className="container-wide !pt-8 !pb-8 !pl-6 !pr-6 flex items-center justify-between small muted flex-wrap gap-2">
+          <div>GD Nexus · MMXXVI · Paper trading only. Not investment advice.</div>
+          <div className="italic">Herewith, our situational awareness.</div>
+        </div>
+      </footer>
+    </div>
+  );
+}
 
 export default function App() {
   const [authed, setAuthed] = useState(!!getToken());
-  const [forgeCode, setForgeCode] = useState(null);
-  const [vaultBump, setVaultBump] = useState(0);
-  const forgeRef = useRef(null);
-
   useEffect(() => {
     setUnauthHandler(() => setAuthed(false));
-    document.title = "GD NEXUS · STRATEGY / CAPITAL / MACHINE";
+    document.title = "GD Nexus";
   }, []);
-
   const logout = () => { clearToken(); setAuthed(false); };
-  const loopBack = () => {
-    const el = document.getElementById("s1");
-    if (window.__lenis) window.__lenis.scrollTo(0, { duration: 1.6 });
-    else el?.scrollIntoView({ behavior: "smooth" });
-  };
 
-  const openInForge = (code, autoJump = true) => {
-    setForgeCode(code);
-    if (autoJump) {
-      setTimeout(() => {
-        const el = document.getElementById("s3");
-        if (window.__lenis && el) window.__lenis.scrollTo(el, { offset: -20, duration: 1.2 });
-        else el?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-    }
-  };
-
-  // Auto-loop when user reaches epilogue bottom
-  useEffect(() => {
-    if (!authed) return;
-    let last = 0;
-    const onScroll = () => {
-      const y = window.scrollY + window.innerHeight;
-      const h = document.body.scrollHeight;
-      if (y >= h - 4 && Date.now() - last > 2000) {
-        last = Date.now();
-        loopBack();
-      }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [authed]);
-
-  if (!authed) {
-    return (
-      <>
-        <Cursor />
-        <AccessGate onAuth={() => setAuthed(true)} />
-      </>
-    );
-  }
+  if (!authed) return <AccessGate onAuth={() => setAuthed(true)} />;
 
   return (
-    <SmoothScroll>
-      <Cursor />
-      <TopBar onLogout={logout} />
-      <main className="relative">
-        <Hero />
-        <Council onOpenInForge={openInForge} />
-        <div ref={forgeRef}>
-          <Forge initialCode={forgeCode} onSavedToVault={() => setVaultBump((v) => v + 1)} />
-        </div>
-        <Vault onLoadToForge={openInForge} refreshKey={vaultBump} />
-        <Treasury />
-        <Epilogue onLoop={loopBack} />
-      </main>
-
-      {/* SVG glitch filter (used on paintings via filter: url(#glitch)) */}
-      <svg width="0" height="0" style={{ position: "absolute" }}>
-        <filter id="glitch">
-          <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" />
-          <feOffset in="SourceGraphic" dx="-3" dy="0" result="r" />
-          <feOffset in="SourceGraphic" dx="3" dy="0" result="b" />
-          <feBlend in="r" in2="b" mode="screen" />
-        </filter>
-      </svg>
-    </SmoothScroll>
+    <BrowserRouter>
+      <Chrome onLogout={logout}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/lab" element={<LabPage />} />
+          <Route path="/backtest" element={<BacktestPage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Chrome>
+    </BrowserRouter>
   );
 }
