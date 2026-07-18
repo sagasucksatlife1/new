@@ -12,7 +12,25 @@ module.exports = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
       },
+      fontFamily: {
+        display: ["'Fraunces'", 'serif'],
+        mono: ["'Fraunces'", 'serif'],
+        serif: ["'Fraunces'", 'serif'],
+        alt: ["'Cormorant Garamond'", 'serif'],
+      },
       colors: {
+        ink: '#1B140D',
+        canvas: '#1B140D',
+        cream: '#E7DAB8',
+        parchment: '#E7DAB8',
+        umber: '#6B4A2B',
+        olive: '#4A5A3A',
+        volt: '#C9A567',
+        gold: '#C9A567',
+        burnt: '#8B3A2E',
+        sepia: '#B99366',
+        surface: '#241A11',
+        muted2: '#A08F6E',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
