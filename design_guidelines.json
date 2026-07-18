@@ -1,0 +1,210 @@
+{
+  "theme": "Old Masters × Formula 1 Future",
+  "palette": {
+    "ink": "#0A0A08",
+    "cream": "#EDE6D6",
+    "umber": "#4A4636",
+    "olive": "#6B6450",
+    "volt": "#D6FF3D",
+    "gold": "#D4AF37",
+    "surface_dark": "#161513",
+    "text_muted": "#A39F8E"
+  },
+  "typography": {
+    "imports": [
+      "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');"
+    ],
+    "headings": {
+      "family": "'Playfair Display', serif",
+      "style": "Massive, oversized, sometimes cropped off-screen, italic accents on single words ('Timeless Art' museum poster energy)",
+      "weights": ["400", "700", "900"]
+    },
+    "data_labels": {
+      "family": "'JetBrains Mono', monospace",
+      "style": "Uppercase, letter-spaced (tracking-widest), rigid alignment",
+      "weights": ["400", "700"]
+    }
+  },
+  "visual_enhancers": {
+    "textures": [
+      "Subtle paper grain overlay on cream sections (mix-blend-multiply).",
+      "Faint topographic contour lines drifting in the background."
+    ],
+    "borders": [
+      "Thin gold-line borders (#D4AF37) for oil painting frames.",
+      "Acid volt green (#D6FF3D) 1px solid borders for active interactive elements and live states."
+    ],
+    "glitch_effects": [
+      "Scan-line displacement on hover/scroll.",
+      "RGB-split and pixel-sort on failed passwords and painting fragments."
+    ]
+  },
+  "motion": {
+    "scroll": "GSAP ScrollTrigger for infinite scroll loop, Lenis for momentum-based smooth scroll.",
+    "cursor": "Custom volt (#D6FF3D) cursor with a delayed trailing ring, expanding and showing contextual labels (e.g., 'RUN', 'DRAG') over interactive elements.",
+    "transitions": "Ink-brush section wipes (SVG mask transitions).",
+    "interactive": "Magnetic buttons (attract cursor on hover), flip-clock/odometer digit rolls for live metrics.",
+    "loading": "Wireframe dome rotating state."
+  },
+  "layouts": {
+    "spacing_system": "Extremely generous (Tailwind p-8, p-16, p-24, p-32). Tension created by overlapping elements.",
+    "alignment": "Optical alignment. Museum-style asymmetric layouts mixing wide panoramas and strict grid constraints for data."
+  },
+  "components": {
+    "magnetic_button": {
+      "description": "Button that subtly snaps to the user's cursor on hover.",
+      "styles": "JetBrains Mono uppercase, volt (#D6FF3D) background on hover, ink (#0A0A08) text on hover. Otherwise transparent with volt border."
+    },
+    "museum_card": {
+      "description": "Used for personas and saved strategies.",
+      "styles": "Cream (#EDE6D6) background, ink (#0A0A08) text, subtle noise overlay, framed with a thin dark umber border or gold line."
+    },
+    "volt_frame": {
+      "description": "High-tech wrapper for live data.",
+      "styles": "Sharp 1px solid #D6FF3D border, #0A0A08 background, glowing drop shadow. No border radius."
+    },
+    "odometer_digit": {
+      "description": "For live SSE metrics.",
+      "styles": "Vertical sliding digit animation, monospaced, volt text."
+    },
+    "painting_frame": {
+      "description": "Wrapper for classical art.",
+      "styles": "Deep umber (#4A4636) outer thick frame, thin gold (#D4AF37) inner border, drop-shadow-2xl."
+    },
+    "sse_console": {
+      "description": "Live AI status logs.",
+      "styles": "Monaco/JetBrains Mono font, ink background, volt text, uppercase, fast scrolling, glowing text-shadow."
+    },
+    "run_config_panel": {
+      "description": "F1 pit-wall inspired configuration.",
+      "styles": "Dense layout, uppercase labels, slider inputs with volt thumbs, active chips with volt backgrounds."
+    }
+  },
+  "chart_color_conventions": {
+    "background": "#0A0A08 (Ink)",
+    "benchmark_line": "#EDE6D6 (Cream)",
+    "strategy_line": "#D6FF3D (Volt)",
+    "axes_grid": "#4A4636 (Umber, 0.3 opacity)",
+    "tooltip": "Volt border, Ink background, JetBrains Mono text"
+  },
+  "section_blueprint": [
+    {
+      "id": "access-gate",
+      "name": "Access Gate",
+      "description": "Classical portrait with eyes covered by a volt censor bar. Password field styled like a museum placard. Wrong password shakes and applies RGB split/glitch to the painting."
+    },
+    {
+      "id": "s1-hero",
+      "name": "S1 Hero",
+      "description": "Giant serif heading 'GD NEXUS', subhead 'STRATEGY · CAPITAL · MACHINE'. Live status chips for backend/Ollama/Data. Features a painting + rotating wireframe dome."
+    },
+    {
+      "id": "s2-council",
+      "name": "S2 The Council",
+      "description": "Horizontal pinned scroll of 10 persona portrait cards. Magnetic 'SUMMON THE COUNCIL' button. Live SSE console showing persona reasoning, graveyard (failures), and survivors with odometer metrics."
+    },
+    {
+      "id": "s3-forge",
+      "name": "S3 The Forge",
+      "description": "Monaco code editor with volt syntax highlighting. Race-engineering run-config panel (symbol, timeframe chips, leverage slider, etc.). Equity/drawdown charts and trades table."
+    },
+    {
+      "id": "s4-vault",
+      "name": "S4 The Vault",
+      "description": "Gallery wall of saved strategy plaques (museum-style). Magnetic buttons for LOAD/DELETE/RUN."
+    },
+    {
+      "id": "s5-treasury",
+      "name": "S5 The Treasury",
+      "description": "Holdings editor with a sum-to-100% volt progress bar. Correlation matrix rendered as an engraved heatmap. Before/after weight bars morphing, and fusion portfolio backtest chart."
+    },
+    {
+      "id": "s6-epilogue",
+      "name": "S6 Epilogue",
+      "description": "Full-bleed dark section with a single serif line: 'The market is a museum. Everything here has happened before.' Initiates seamless GSAP loop back to S1 Hero."
+    }
+  ],
+  "image_urls": [
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Johannes_Vermeer_-_Girl_with_a_Pearl_Earring_-_WGA24666.jpg/800px-Johannes_Vermeer_-_Girl_with_a_Pearl_Earring_-_WGA24666.jpg",
+      "category": "portrait",
+      "description": "Vermeer - Girl with a Pearl Earring"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Rembrandt_van_Rijn_-_Self-Portrait_-_Google_Art_Project.jpg/800px-Rembrandt_van_Rijn_-_Self-Portrait_-_Google_Art_Project.jpg",
+      "category": "portrait",
+      "description": "Rembrandt - Self-Portrait"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Rembrandt_Harmensz._van_Rijn_014.jpg/800px-Rembrandt_Harmensz._van_Rijn_014.jpg",
+      "category": "portrait",
+      "description": "Rembrandt - The Night Watch Fragment"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Caravaggio_-_David_con_la_testa_di_Golia.jpg/800px-Caravaggio_-_David_con_la_testa_di_Golia.jpg",
+      "category": "portrait",
+      "description": "Caravaggio - David with the Head of Goliath"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Diego_Vel%C3%A1zquez_-_Portrait_of_Innocent_X_-_WGA24403.jpg/800px-Diego_Vel%C3%A1zquez_-_Portrait_of_Innocent_X_-_WGA24403.jpg",
+      "category": "portrait",
+      "description": "Velázquez - Portrait of Innocent X"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Anthony_van_Dyck_-_Charles_I_%281600-49%29_with_M._de_St_Antoine_-_RCIN_405322_-_Royal_Collection.jpg/800px-Anthony_van_Dyck_-_Charles_I_%281600-49%29_with_M._de_St_Antoine_-_RCIN_405322_-_Royal_Collection.jpg",
+      "category": "portrait",
+      "description": "Van Dyck - Charles I"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg",
+      "category": "portrait",
+      "description": "Da Vinci - Mona Lisa"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/800px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg",
+      "category": "portrait",
+      "description": "Botticelli - Birth of Venus Fragment"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Peter_Paul_Rubens_-_Portrait_of_a_Woman_-_WGA20361.jpg/800px-Peter_Paul_Rubens_-_Portrait_of_a_Woman_-_WGA20361.jpg",
+      "category": "portrait",
+      "description": "Rubens - Portrait of a Woman"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Jan_van_Eyck_-_Portrait_of_a_Man_%28Self_Portrait%3F%29_-_National_Gallery%2C_London.jpg/800px-Jan_van_Eyck_-_Portrait_of_a_Man_%28Self_Portrait%3F%29_-_National_Gallery%2C_London.jpg",
+      "category": "portrait",
+      "description": "Van Eyck - Portrait of a Man"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Rembrandt_Harmensz._van_Rijn_-_Old_Man_with_a_Gold_Chain_-_Google_Art_Project.jpg/800px-Rembrandt_Harmensz._van_Rijn_-_Old_Man_with_a_Gold_Chain_-_Google_Art_Project.jpg",
+      "category": "portrait",
+      "description": "Rembrandt - Old Man with a Gold Chain"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/800px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg",
+      "category": "portrait",
+      "description": "Frans Hals - René Descartes"
+    }
+  ],
+  "instructions_to_main_agent": [
+    "Strictly follow the color palette. #D6FF3D (Volt) is ONLY for interactive states, live metrics, and active cursors.",
+    "Implement Lenis for smooth scrolling globally.",
+    "Use GSAP ScrollTrigger to pin the Council section horizontally and to create the seamless Epilogue -> Hero loop.",
+    "Do NOT use Space Grotesk. The prompt asks for JetBrains Mono for data/UI elements. Strictly enforce JetBrains Mono for all monospaced tech typography.",
+    "Apply the paper grain overlay (SVG filter or CSS noise background) to cream (#EDE6D6) containers.",
+    "All interactive elements MUST have `data-testid` attributes (kebab-case, role-based).",
+    "DO NOT use clear transparent backgrounds for UI components covering the imagery—use solid #0A0A08 or #EDE6D6 backgrounds to ensure text readability.",
+    "Implement the glitch effect using CSS keyframes and text-shadow (for RGB split) combined with repeating-linear-gradient for scan lines.",
+    "Use standard HTML/Tailwind for structural creative layouts, reserving Shadcn UI for complex interactives (slider, dropdowns) heavily restyled to remove generic look.",
+    "The codebase uses React (.jsx files, NO TYPESCRIPT). Ensure all implementation instructions use standard JS."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Avoid generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "NEVER use AI assistant emoji characters (🤖🧠💭💡🔮🎯) for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Ensure the Volt Cursor interacts dynamically with links/buttons (e.g., scaling up, showing 'VIEW' text inside the ring).",
+    "No purple/violet gradients allowed. Stick to Ink, Cream, Umber, Olive, and Volt."
+  ]
+}
